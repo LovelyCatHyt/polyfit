@@ -1,3 +1,4 @@
+#include <stdlib.h>
 //----------------------------------------------------
 //
 // METHOD:  polyfit
@@ -19,11 +20,11 @@ int polyfit(const double* const dependentValues,
 {
     // Declarations...
     // ----------------------------------
-    enum {maxOrder = 5};
+    // enum {maxOrder = 5};
     
-    double B[maxOrder+1] = {0.0f};
-    double P[((maxOrder+1) * 2)+1] = {0.0f};
-    double A[(maxOrder + 1)*2*(maxOrder + 1)] = {0.0f};
+    double* B = calloc(((unsigned long long)order + 1), sizeof(double));
+    double* P = calloc((((unsigned long long)order + 1) * 2) + 1, sizeof(double));
+    double* A = calloc(((unsigned long long)order + 1) * 2 * ((unsigned long long)order + 1), sizeof(double));
 
     double x, y, powx;
 
@@ -38,9 +39,10 @@ int polyfit(const double* const dependentValues,
         return -1;
 
     // This method has imposed an arbitrary bound of
-    // order <= maxOrder.  Increase maxOrder if necessary.
-    if (order > maxOrder)
-        return -1;
+    // order <= maxOrder.  Increase maxOrder if necessary. --originally
+    // But now I remove this.
+   /* if (order > maxOrder)
+        return -1;*/
 
     // Begin Code...
     // ----------------------------------
