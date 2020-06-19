@@ -138,7 +138,7 @@ int polyfit(const double* const dependentValues,
             coefficients[ii] = x;
         }
     }
-
+    free(B); free(P); free(A);
     return 0;
 }
 
